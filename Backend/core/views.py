@@ -62,3 +62,16 @@ class MemeDetailView(APIView):
         meme = get_object_or_404(Meme, pk=pk)
         serializer = MemeSerializer(meme)
         return Response(serializer.data)
+    
+    def put(self, request, pk):
+        meme = get_object_or_404(Meme, pk=pk)
+        serializer = MemeSerializer(meme, data=request.data, partial=True)
+        if serializer.is_valid():
+            update_meme = serializer.save()
+            return Response(MemeSerializer(update_meme).data)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    
+    def delete(self, request, pk):
+        meme = get_object_or_404(Meme, pk=pk)
+        meme.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
