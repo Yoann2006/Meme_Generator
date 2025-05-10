@@ -1,25 +1,30 @@
-import { useEffect, useState } from 'react';
-import api from '../api';
-import ShareButtons from './ShareButtons';
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import "./Gallery.css";
 
-const MemeGallery = () => {
+const Gallery = () => {
   const [memes, setMemes] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
-    api.get('/memes/').then((res) => setMemes(res.data));
+    axios.get("http://localhost:8000/memes/create/")
+      .then(response => setMemes(response.data))
+      .catch(error => console.error("Erreur de récupération des mèmes:", error));
   }, []);
 
   return (
-    <div>
-      <h2>Galerie</h2>
-      {memes.map((meme) => (
-        <div key={meme.id}>
-          <img src={`http://localhost:8000${meme.generated_meme}`} alt="Meme" width="300" />
-          <ShareButtons url={`http://localhost:8000${meme.generated_meme}`} />
-        </div>
-      ))}
+    <div className="gallery-container">
+      <h2>Galerie de Mèmes</h2>
+      <div className="gallery-grid">
+        {memes.map(meme => (
+          <div key={meme.id} className="meme-thumbnail" onClick={() => navigate(`/gallery/${meme.id}`)}>
+            <img src={`http://localhost:8000${meme.image}`} alt="Mème" />
+          </div>
+        ))}
+      </div>
     </div>
   );
 };
 
-export default MemeGallery;
+export default Gallery;

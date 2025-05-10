@@ -1,0 +1,52 @@
+/* Detail Container */
+.detail-container {
+    padding: 2rem;
+    max-width: 800px;
+    margin: auto;
+    text-align: center;
+    background-color: #fff;
+    box-shadow: 0 2px 18px rgba(0, 0, 0, 0.1);
+    border-radius: 16px;
+    margin-top: 3rem;
+  }
+  
+  /* Image Style */
+  .detail-image {
+    width: 100%;
+    max-height: 600px;
+    object-fit: contain;
+    border-radius: 12px;
+    margin-bottom: 2rem;
+  }
+  
+  /* Button Group */
+  .button-group {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+  
+  .button-group button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 0.8rem 1.5rem;
+    font-size: 1rem;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+  }
+  
+  .button-group button:hover {
+    background-color: #0056b3;
+  }
+  
+  .button-group .delete-button {
+    background-color: #dc3545;
+  }
+  
+  .button-group .delete-button:hover {
+    background-color: #b02a37;
+  }
+  
