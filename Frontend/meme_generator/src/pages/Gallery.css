@@ -1,33 +1,273 @@
+:root {
+  --primary-color: #6c5ce7;
+  --primary-hover: #5649c0;
+  --secondary-color: #00cec9;
+  --error-color: #ff7675;
+  --text-color: #2d3436;
+  --light-text: #636e72;
+  --border-color: #dfe6e9;
+  --bg-color: #f5f6fa;
+  --card-bg: #ffffff;
+}
+
 .gallery-container {
-    padding: 2rem;
-    background-color: #f9f9f9;
-    min-height: 100vh;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+  min-height: 100vh;
+}
+
+.gallery-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.gallery-header h1 {
+  font-size: 2.5rem;
+  color: var(--primary-color);
+  margin-bottom: 0.5rem;
+}
+
+.gallery-header p {
+  color: var(--light-text);
+  font-size: 1.1rem;
+}
+
+.gallery-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.search-bar {
+  flex: 1;
+  min-width: 250px;
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.search-bar svg {
+  position: absolute;
+  left: 12px;
+  color: var(--light-text);
+}
+
+.search-bar input {
+  width: 100%;
+  padding: 0.75rem 1rem 0.75rem 40px;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+.search-bar input:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 2px rgba(108, 92, 231, 0.2);
+}
+
+.sort-options {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.sort-options label {
+  color: var(--light-text);
+  font-size: 0.9rem;
+}
+
+.sort-options select {
+  padding: 0.75rem;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  font-size: 1rem;
+  background-color: white;
+  cursor: pointer;
+}
+
+.create-btn {
+  padding: 0.75rem 1.5rem;
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.create-btn:hover {
+  background-color: var(--primary-hover);
+  transform: translateY(-2px);
+}
+
+.create-btn svg {
+  stroke-width: 3;
+}
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.meme-card {
+  background-color: var(--card-bg);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.meme-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.meme-image-container {
+  aspect-ratio: 1/1;
+  overflow: hidden;
+}
+
+.meme-image-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.meme-card:hover .meme-image-container img {
+  transform: scale(1.05);
+}
+
+.meme-info {
+  padding: 1rem;
+}
+
+.meme-text {
+  margin-bottom: 0.5rem;
+  min-height: 60px;
+}
+
+.meme-text p {
+  margin: 0.25rem 0;
+  font-size: 0.9rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.meme-text .top-text {
+  font-weight: bold;
+}
+
+.meme-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.8rem;
+  color: var(--light-text);
+}
+
+.meme-meta svg {
+  margin-right: 0.25rem;
+  vertical-align: middle;
+}
+
+.likes {
+  display: flex;
+  align-items: center;
+}
+
+.error-message {
+  text-align: center;
+  padding: 2rem;
+  background-color: rgba(255, 118, 117, 0.1);
+  border-radius: 12px;
+  margin: 2rem 0;
+}
+
+.error-message svg {
+  color: var(--error-color);
+  margin-bottom: 1rem;
+}
+
+.error-message button {
+  margin-top: 1rem;
+  padding: 0.5rem 1rem;
+  background-color: var(--error-color);
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.loading-spinner {
+  text-align: center;
+  padding: 3rem;
+}
+
+.spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid rgba(108, 92, 231, 0.1);
+  border-radius: 50%;
+  border-top-color: var(--primary-color);
+  animation: spin 1s linear infinite;
+  margin: 0 auto 1rem;
+}
+
+.empty-gallery {
+  text-align: center;
+  padding: 3rem;
+}
+
+.empty-gallery svg {
+  color: var(--light-text);
+  margin-bottom: 1rem;
+  opacity: 0.5;
+}
+
+.empty-gallery h3 {
+  color: var(--text-color);
+  margin-bottom: 0.5rem;
+}
+
+.empty-gallery p {
+  color: var(--light-text);
+  margin-bottom: 1.5rem;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+@media (max-width: 768px) {
+  .gallery-container {
+    padding: 1.5rem;
+  }
+  
+  .gallery-header h1 {
+    font-size: 2rem;
+  }
+  
+  .gallery-controls {
+    flex-direction: column;
+    align-items: stretch;
   }
   
   .gallery-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 1.5rem;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
   }
-  
-  .meme-thumbnail {
-    background-color: white;
-    border-radius: 12px;
-    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
-    overflow: hidden;
-    cursor: pointer;
-    transition: transform 0.2s ease;
-  }
-  
-  .meme-thumbnail:hover {
-    transform: scale(1.03);
-  }
-  
-  .meme-thumbnail img {
-    width: 100%;
-    height: 220px;
-    object-fit: cover;
-    display: block;
-    border-radius: 12px;
-  }
-  
+}

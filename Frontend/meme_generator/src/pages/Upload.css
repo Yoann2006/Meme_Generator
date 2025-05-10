@@ -1,62 +1,358 @@
-.upload-container {
-    max-width: 600px;
-    margin: 3rem auto;
-    padding: 2rem;
-    background-color: #fff;
-    border-radius: 1rem;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+:root {
+  --primary-color: #6c5ce7;
+  --primary-hover: #5649c0;
+  --secondary-color: #00cec9;
+  --error-color: #ff7675;
+  --text-color: #2d3436;
+  --light-text: #636e72;
+  --border-color: #dfe6e9;
+  --bg-color: #f5f6fa;
+  --card-bg: #ffffff;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  line-height: 1.6;
+}
+
+.meme-editor-container {
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background-color: var(--card-bg);
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+}
+
+.editor-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.editor-header h1 {
+  font-size: 2.5rem;
+  color: var(--primary-color);
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+}
+
+.editor-header p {
+  color: var(--light-text);
+  font-size: 1.1rem;
+}
+
+.upload-area {
+  border: 2px dashed var(--border-color);
+  border-radius: 12px;
+  padding: 3rem 2rem;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-bottom: 2rem;
+  background-color: rgba(108, 92, 231, 0.05);
+}
+
+.upload-area:hover, .drag-active {
+  border-color: var(--primary-color);
+  background-color: rgba(108, 92, 231, 0.1);
+}
+
+.upload-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.upload-icon {
+  width: 80px;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(108, 92, 231, 0.1);
+  border-radius: 50%;
+  margin-bottom: 1rem;
+  color: var(--primary-color);
+}
+
+.upload-area h3 {
+  font-size: 1.25rem;
+  color: var(--text-color);
+  margin-bottom: 0.25rem;
+}
+
+.upload-area p {
+  color: var(--light-text);
+  margin-bottom: 0.5rem;
+}
+
+.file-types {
+  font-size: 0.85rem;
+  color: var(--light-text);
+  padding: 0.25rem 0.75rem;
+  background-color: rgba(0, 0, 0, 0.05);
+  border-radius: 20px;
+}
+
+.editor-controls {
+  margin-bottom: 2rem;
+}
+
+.text-controls {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.input-group label {
+  font-weight: 600;
+  color: var(--text-color);
+}
+
+.input-group input {
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: border 0.3s ease;
+}
+
+.input-group input:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 2px rgba(108, 92, 231, 0.2);
+}
+
+.character-count {
+  font-size: 0.75rem;
+  color: var(--light-text);
+  text-align: right;
+}
+
+.generate-btn {
+  width: 100%;
+  padding: 1rem;
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.generate-btn:hover {
+  background-color: var(--primary-hover);
+  transform: translateY(-2px);
+}
+
+.generate-btn:disabled {
+  background-color: #b2bec3;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.spinner {
+  width: 20px;
+  height: 20px;
+  border: 3px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  border-top-color: white;
+  animation: spin 1s ease-in-out infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.meme-preview {
+  margin-top: 2rem;
+}
+
+.meme-preview h3 {
+  font-size: 1.25rem;
+  margin-bottom: 1rem;
+  color: var(--text-color);
+}
+
+.preview-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.preview-image {
+  max-width: 100%;
+  border-radius: 12px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  border: 1px solid var(--border-color);
+}
+
+.preview-actions {
+  display: flex;
+  gap: 1rem;
+}
+
+.download-btn, .share-btn {
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.download-btn {
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+}
+
+.download-btn:hover {
+  background-color: var(--primary-hover);
+}
+
+.share-btn {
+  background-color: white;
+  color: var(--primary-color);
+  border: 2px solid var(--primary-color);
+}
+
+.share-btn:hover {
+  background-color: rgba(108, 92, 231, 0.1);
+}
+
+.empty-preview, .loading-preview {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem 2rem;
+  background-color: rgba(0, 0, 0, 0.02);
+  border-radius: 12px;
+  border: 1px dashed var(--border-color);
+  color: var(--light-text);
+  gap: 1rem;
+}
+
+.loading-spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid rgba(108, 92, 231, 0.1);
+  border-radius: 50%;
+  border-top-color: var(--primary-color);
+  animation: spin 1s linear infinite;
+}
+
+.error-message {
+  padding: 1rem;
+  background-color: rgba(255, 118, 117, 0.1);
+  color: var(--error-color);
+  border-radius: 8px;
+  margin-bottom: 1.5rem;
+  text-align: center;
+  font-weight: 500;
+}
+
+@media (max-width: 768px) {
+  .meme-editor-container {
+    padding: 1.5rem;
+    margin: 1rem;
   }
-  
-  .upload-container h2 {
-    text-align: center;
-    margin-bottom: 1.5rem;
-    color: #333;
+
+  .text-controls {
+    grid-template-columns: 1fr;
   }
-  
-  .upload-form {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
+
+  .editor-header h1 {
+    font-size: 2rem;
   }
-  
-  .upload-form input[type="file"] {
-    padding: 0.5rem;
-    border: 2px dashed #ccc;
-    border-radius: 8px;
-    background-color: #f9f9f9;
-    cursor: pointer;
-  }
-  
-  .upload-form input[type="text"] {
-    padding: 0.75rem;
-    border-radius: 8px;
-    border: 1px solid #ccc;
-    font-size: 1rem;
-  }
-  
-  .upload-form button {
-    padding: 0.75rem;
-    background-color: #4caf50;
-    color: white;
-    font-weight: bold;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: background 0.3s;
-  }
-  
-  .upload-form button:hover {
-    background-color: #45a049;
-  }
-  
-  .preview {
-    margin-top: 2rem;
-    text-align: center;
-  }
-  
-  .preview img {
-    max-width: 100%;
-    border-radius: 0.5rem;
-    border: 2px solid #ccc;
-  }
-  
+}
+
+/* Ajoutez ces styles à la fin de votre fichier CSS */
+
+.style-controls {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--border-color);
+}
+
+.control-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.control-group label {
+  font-size: 0.9rem;
+  color: var(--light-text);
+}
+
+.control-group input[type="color"] {
+  width: 100%;
+  height: 40px;
+  padding: 0;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.control-group input[type="range"] {
+  width: 100%;
+  height: 8px;
+  background: var(--border-color);
+  border-radius: 4px;
+  outline: none;
+}
+
+.control-group input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 20px;
+  height: 20px;
+  background: var(--primary-color);
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.instructions {
+  margin-top: 1rem;
+  padding: 0.5rem;
+  background-color: rgba(108, 92, 231, 0.1);
+  border-radius: 8px;
+  text-align: center;
+  font-size: 0.9rem;
+  color: var(--primary-color);
+}
+
+.preview-image {
+  cursor: grab;
+  user-select: none;
+}
+
+.preview-image:active {
+  cursor: grabbing;
+}
