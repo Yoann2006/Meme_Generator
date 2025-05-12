@@ -71,24 +71,17 @@ meme-generator/
 
 ---
 
-## **🖥️ Captures d'Écran**  
-| Éditeur | Galerie |  
-|---------|---------|  
-| ![Éditeur](demo/editor.png) | ![Galerie](demo/gallery.png) |  
-
----
-
 
 ## **📝 Licence**  
-MIT License © 2023 - [Votre Nom]  
+MIT License © 2023 - [Yoann DOSSOU-YOVO]  
 
 ---
 
 ## **💡 Auteurs & Contributions**  
-- **Développeur** : [Votre Nom]  
+- **Développeur** : [Yoann DOSSOU-YOVO]  
 - **Contact** : [dossouyovoyoann@email.com]  
 
-🔗 **Lien GitHub** : [github.com/votre-repo](https://github.com/votre-repo)  
+🔗 **Lien GitHub** : [github.com/Yoann2006](https://github.com/Yoann2006)  
 
 ---
 

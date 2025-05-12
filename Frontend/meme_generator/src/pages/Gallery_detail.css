@@ -160,7 +160,6 @@
   align-items: center;
 }
 
-/* Boutons d'action principaux */
 .action-buttons {
   display: flex;
   flex-wrap: wrap;
@@ -170,7 +169,6 @@
   padding: 1rem;
 }
 
-/* Bouton de téléchargement */
 .download-btn {
   background-color: #4CAF50;
   color: white;
@@ -198,7 +196,6 @@
   cursor: not-allowed;
 }
 
-/* Boutons de partage */
 .share-buttons {
   display: flex;
   gap: 0.8rem;
@@ -223,23 +220,18 @@
   box-shadow: 0 4px 8px rgba(0,0,0,0.15);
 }
 
-/* Styles spécifiques pour chaque plateforme */
-.facebook {
-  background-color: #3b5998;
+.x {
+  background-color: #000;
+  color: white;
 }
 
-.facebook:hover {
-  background-color: #334d84;
+.x:hover {
+  background-color: #222;
 }
 
-.twitter {
-  background-color: #1DA1F2;
+.x svg {
+  fill: white;
 }
-
-.twitter:hover {
-  background-color: #1991db;
-}
-
 .whatsapp {
   background-color: #25D366;
 }
@@ -248,7 +240,6 @@
   background-color: #1da851;
 }
 
-/* Bouton de suppression */
 .delete-btn {
   background-color: #f44336;
   color: white;
@@ -276,7 +267,6 @@
   cursor: not-allowed;
 }
 
-/* Animation pour les états de chargement */
 .spinner {
   animation: rotate 1s linear infinite;
   width: 20px;
