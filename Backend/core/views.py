@@ -49,10 +49,9 @@ class MemeDetailView(APIView):
         return Response(status=status.HTTP_204_NO_CONTENT)
     
 
-class MemeDownloadView(APIView):
-    def get(self, request, pk):
-        meme = get_object_or_404(Meme, pk=pk)
-        if meme.generated_meme:
-            file_path = meme.generated_meme.path
-            return FileResponse(open(file_path, 'rb'), as_attachment=True, filename=f"meme_{meme.id}.jpg")
-        return Response({"error" : "Meme not found."}, status=404)
+def serve_meme_file(self, request, pk):
+    meme = get_object_or_404(Meme, pk=pk)
+    if meme.generated_meme:
+        file_path = meme.generated_meme.path
+        return FileResponse(open(file_path, 'rb'), as_attachment=True, filename=f"meme_{meme.id}.jpg")
+    return Response({"error" : "Meme not found."}, status=404)

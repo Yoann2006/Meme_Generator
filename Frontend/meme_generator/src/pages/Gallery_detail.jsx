@@ -49,18 +49,32 @@ const MemeDetail = () => {
 
   const handleDownload = () => {
     setIsDownloading(true);
-    const link = document.createElement("a");
-    link.href = `http://localhost:8000${meme.image}`;
-    link.download = `meme-${id}-${meme.image.split("/").pop()}`;
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-    setTimeout(() => setIsDownloading(false), 1500);
+    
+    fetch(`http://localhost:8000${meme.image}`)
+      .then(response => response.blob())
+      .then(blob => {
+        const url = window.URL.createObjectURL(blob);
+        const link = document.createElement("a");
+        link.href = url;
+        link.download = `meme-${meme.id || new Date().getTime()}.jpg`;
+        document.body.appendChild(link);
+        link.click();
+        
+        setTimeout(() => {
+          document.body.removeChild(link);
+          window.URL.revokeObjectURL(url);
+          setIsDownloading(false);
+        }, 100);
+      })
+      .catch(err => {
+        console.error("Erreur de téléchargement:", err);
+        setIsDownloading(false);
+      });
   };
 
   const shareMeme = (platform) => {
     const baseUrl = window.location.origin;
-    const imageUrl = `http://localhost:8000${meme.image}`;
+    const imageUrl = `http://localhost:8000/memes/${meme.id}/file/`;
     const text = `Regardez ce mème: "${meme.top_text || ''} ${meme.bottom_text || ''}"`;
 
     const platforms = {
@@ -71,7 +85,7 @@ const MemeDetail = () => {
     };
 
     window.open(platforms[platform], "_blank", "width=600,height=500");
-  };
+};
 
   const handleBack = () => {
     navigate(-1);
@@ -147,21 +161,9 @@ const MemeDetail = () => {
           disabled={isDownloading}
         >
           {isDownloading ? (
-            <>
-              <svg className="spinner" viewBox="0 0 50 50">
-                <circle cx="25" cy="25" r="20" fill="none" strokeWidth="5"></circle>
-              </svg>
-              Téléchargement...
-            </>
+            'Téléchargement...'
           ) : (
-            <>
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
-                <polyline points="7 10 12 15 17 10"></polyline>
-                <line x1="12" y1="15" x2="12" y2="3"></line>
-              </svg>
-              Télécharger
-            </>
+            'Télécharger'
           )}
         </button>
 
