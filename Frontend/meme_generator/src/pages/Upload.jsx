@@ -26,7 +26,6 @@ const MemeEditor = () => {
   const previewRef = useRef(null);
   const navigate = useNavigate();
 
-  // Fonction pour dessiner le mème
   const drawMeme = useCallback(() => {
     if (!originalImage) return;
 
@@ -61,7 +60,6 @@ const MemeEditor = () => {
     setPreviewUrl(canvas.toDataURL("image/jpeg", 0.9));
   }, [originalImage, topText, bottomText, fontSize, textColor, strokeColor, textPositions]);
 
-  // Gestion de l'image uploadée
   const handleImageChange = (e) => {
     const file = e.target.files?.[0];
     if (!file) return;
@@ -95,7 +93,6 @@ const MemeEditor = () => {
     reader.readAsDataURL(file);
   };
 
-  // Gestion du drag and drop
   const handleDrag = (e) => {
     e.preventDefault();
     e.stopPropagation();
@@ -115,7 +112,6 @@ const MemeEditor = () => {
     }
   };
 
-  // Gestion du drag des textes
   const handleMouseDown = (e) => {
     if (!previewUrl || !previewRef.current) return;
     
@@ -156,12 +152,10 @@ const MemeEditor = () => {
     setDragging(null);
   };
 
-  // Redessine le mème quand quelque chose change
   useEffect(() => {
     drawMeme();
   }, [drawMeme]);
 
-  // Gestion de la soumission
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!imageFile) {

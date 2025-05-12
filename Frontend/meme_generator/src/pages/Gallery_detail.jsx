@@ -74,7 +74,7 @@ const MemeDetail = () => {
 
   const shareMeme = (platform) => {
     const baseUrl = window.location.origin;
-    const imageUrl = `http://localhost:8000/memes/${meme.id}/file/`;
+    const imageUrl = `http://localhost:8000${meme.image}`;  // Changed this line
     const text = `Regardez ce mème: "${meme.top_text || ''} ${meme.bottom_text || ''}"`;
 
     const platforms = {
